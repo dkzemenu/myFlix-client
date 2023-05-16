@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
+import { LoginView } from '../login-view/login-view';
 
 export const MainView = () => {
     const [movies, setMovies] = useState ([]);
-
-const [selectedMovie, setSelectedMovie] = useState(null);
+    const [selectedMovie, setSelectedMovie] = useState(null);
+    const {user, setUser} = useState(null);
 
 useEffect(() => {
     fetch ('https://movieapi-lcrt.onrender.com/movies')
@@ -21,6 +22,10 @@ useEffect(() => {
         setMovies(moviesFromApi);
     });
 }, []);
+
+if (!user) { 
+    return <LoginView onLoggedIn={(user) => setUser(user)} />
+}
 
 if (selectedMovie) {
     return (
