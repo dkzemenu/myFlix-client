@@ -8,21 +8,26 @@ export const LoginView = ( onLoggedIn) => {
         event.preventDefault();
 
         const data = {
-            access: username,
-            secret: password
+            Username: username,
+            Password: password
         };
 
         fetch("https://movieapi-lcrt.onrender.com/login", {
             method: "POST",
             body: JSON.stringify(data)
-        }).then((response) => {
-            if (response.ok) {
+        }).then((response) => 
+            {
+            if (response.data) {
                 onLoggedIn(username);
-            } else {
-                alert ("Login Failed");
+              } else {
+                alert("Login Failed");
+              }
             }
-        });
-    };
+            );
+          };
+      
+         
+    
 
     return (
         <form onSubmit={handleSubmit}>
