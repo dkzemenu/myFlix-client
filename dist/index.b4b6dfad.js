@@ -27160,7 +27160,7 @@ const MainView = ()=>{
     _s();
     const [movies, setMovies] = (0, _react.useState)([]);
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
-    const { user , setUser  } = (0, _react.useState)(null);
+    const [user, setUser] = (0, _react.useState)(null);
     (0, _react.useEffect)(()=>{
         fetch("https://movieapi-lcrt.onrender.com/movies").then((response)=>response.json()).then((data)=>{
             const moviesFromApi = data.map((doc)=>{
@@ -27214,7 +27214,7 @@ const MainView = ()=>{
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "nObqHeQQYNZuK7IiuKNocL9Hscw=");
+_s(MainView, "AA2Lbd5vppiQn5Rpxq/geFPiCys=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -28276,7 +28276,7 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _s = $RefreshSig$();
-const LoginView = (onLoggedIn)=>{
+const LoginView = ({ onLoggedIn  })=>{
     _s();
     const [username, setUsername] = (0, _react.useState)("");
     const [password, setPassword] = (0, _react.useState)("");
@@ -28288,9 +28288,12 @@ const LoginView = (onLoggedIn)=>{
         };
         fetch("https://movieapi-lcrt.onrender.com/login", {
             method: "POST",
+            headers: {
+                "Content-Type": "application.json"
+            },
             body: JSON.stringify(data)
         }).then((response)=>{
-            if (response.data) onLoggedIn(username);
+            if (response.ok) onLoggedIn(username);
             else alert("Login Failed");
         });
     };
@@ -28303,7 +28306,9 @@ const LoginView = (onLoggedIn)=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
                         type: "text",
                         value: username,
-                        onChange: (e)=>setUsername(e.target.value)
+                        onChange: (e)=>setUsername(e.target.value),
+                        required: true,
+                        minLength: "3"
                     }, void 0, false, {
                         fileName: "src/Components/login-view/login-view.jsx",
                         lineNumber: 36,
@@ -28321,16 +28326,17 @@ const LoginView = (onLoggedIn)=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
                         type: "password",
                         value: password,
-                        onChange: (e)=>setPassword(e.target.value)
+                        onChange: (e)=>setPassword(e.target.value),
+                        required: true
                     }, void 0, false, {
                         fileName: "src/Components/login-view/login-view.jsx",
-                        lineNumber: 43,
+                        lineNumber: 45,
                         columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/Components/login-view/login-view.jsx",
-                lineNumber: 41,
+                lineNumber: 43,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -28338,7 +28344,7 @@ const LoginView = (onLoggedIn)=>{
                 children: " Submit "
             }, void 0, false, {
                 fileName: "src/Components/login-view/login-view.jsx",
-                lineNumber: 48,
+                lineNumber: 51,
                 columnNumber: 13
             }, undefined)
         ]

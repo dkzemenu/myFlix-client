@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-export const LoginView = ( onLoggedIn) => {
+export const LoginView = ({onLoggedIn}) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const handleSubmit = (event) => {
@@ -14,16 +14,16 @@ export const LoginView = ( onLoggedIn) => {
 
         fetch("https://movieapi-lcrt.onrender.com/login", {
             method: "POST",
+            headers: {"Content-Type": "application.json"},
             body: JSON.stringify(data)
         }).then((response) => 
             {
-            if (response.data) {
+            if (response.ok) {
                 onLoggedIn(username);
               } else {
                 alert("Login Failed");
               }
-            }
-            );
+            })
           };
       
          
@@ -36,6 +36,8 @@ export const LoginView = ( onLoggedIn) => {
                 <input type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                required
+                minLength="3"
                 />
             </label>
             <label>
@@ -43,6 +45,7 @@ export const LoginView = ( onLoggedIn) => {
                 <input type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
                 />
             </label>
             <button type="submit"> Submit </button>
