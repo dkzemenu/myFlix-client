@@ -24,9 +24,10 @@ useEffect(() => {
         console.log(data);
         const moviesFromApi = data.map((doc) => {
             return {
-                _id: doc.key,
+                _id: doc._id,
                 title: doc.Title,
-                description: doc.Description
+                description: doc.Description,
+                image: doc.ImagePath
             };
         });
         setMovies(moviesFromApi);

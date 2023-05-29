@@ -27175,9 +27175,10 @@ const MainView = ()=>{
             console.log(data);
             const moviesFromApi = data.map((doc)=>{
                 return {
-                    _id: doc.key,
+                    _id: doc._id,
                     title: doc.Title,
-                    description: doc.Description
+                    description: doc.Description,
+                    image: doc.ImagePath
                 };
             });
             setMovies(moviesFromApi);
@@ -27195,13 +27196,13 @@ const MainView = ()=>{
                 }
             }, void 0, false, {
                 fileName: "src/Components/main-view/main-view.jsx",
-                lineNumber: 38,
+                lineNumber: 39,
                 columnNumber: 11
             }, undefined),
             "or",
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _signupView.SignupView), {}, void 0, false, {
                 fileName: "src/Components/main-view/main-view.jsx",
-                lineNumber: 45,
+                lineNumber: 46,
                 columnNumber: 9
             }, undefined)
         ]
@@ -27211,14 +27212,14 @@ const MainView = ()=>{
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/Components/main-view/main-view.jsx",
-        lineNumber: 52,
+        lineNumber: 53,
         columnNumber: 9
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "There are no movies!"
     }, void 0, false, {
         fileName: "src/Components/main-view/main-view.jsx",
-        lineNumber: 60,
+        lineNumber: 61,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27231,7 +27232,7 @@ const MainView = ()=>{
                     }
                 }, movie.id, false, {
                     fileName: "src/Components/main-view/main-view.jsx",
-                    lineNumber: 67,
+                    lineNumber: 68,
                     columnNumber: 17
                 }, undefined);
             }),
@@ -27244,13 +27245,13 @@ const MainView = ()=>{
                 children: "Logout"
             }, void 0, false, {
                 fileName: "src/Components/main-view/main-view.jsx",
-                lineNumber: 76,
+                lineNumber: 77,
                 columnNumber: 9
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/Components/main-view/main-view.jsx",
-        lineNumber: 64,
+        lineNumber: 65,
         columnNumber: 5
     }, undefined);
 };
@@ -28555,6 +28556,6 @@ $RefreshReg$(_c, "SignupView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"aSD5I","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"kRPH4","react":"21dqq"}]},["2F9Rh","hn82O","d8Dch"], "d8Dch", "parcelRequireaec4")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"aSD5I","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"kRPH4"}]},["2F9Rh","hn82O","d8Dch"], "d8Dch", "parcelRequireaec4")
 
 //# sourceMappingURL=index.b4b6dfad.js.map
