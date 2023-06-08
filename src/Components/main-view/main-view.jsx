@@ -3,6 +3,8 @@ import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
 import { SignupView } from '../signup-view/signup-view';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 export const MainView = () => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -21,58 +23,51 @@ useEffect(() => {
     fetch ('https://movieapi-lcrt.onrender.com/movies',{headers: {Authorization: 'Bearer${token}'}})
     .then ((response) => response.json())
     .then((data) => {
-        console.log(data);
         const moviesFromApi = data.map((doc) => {
             return {
-                _id: doc.key,
+                _id: doc._id,
                 title: doc.Title,
-                description: doc.Description
+                description: doc.Description,
+                image: doc.ImagePath
             };
         });
         setMovies(moviesFromApi);
+        console.log(data);
     });
 }, [token]);
 
-if (!user) { 
-    return (
-    <>    <LoginView onLoggedIn={(user, token) => 
-        {
-        setUser(user); 
-        setToken(token);
-        }} 
-        />
-        or
-        <SignupView/>
-        </>
-    );
-}
-
-if (selectedMovie) {
-    return (
-        <MovieView 
-        movieData = {selectedMovie}
-        onBackClick = {() => setSelectedMovie (null)}
-        />
-    )
-}
-
-if (movies.length === 0) {
-    return <div>There are no movies!</div>
-}
-
 return (
-    <div>
-        {movies.map((movie) => {
-            return (
-                <MovieCard 
-                key ={movie.id}
-                movieData = {movie}
-                onMovieClick={(newSelectedMovie) => {
-                    setSelectedMovie (newSelectedMovie);
-                }}
-                />
-            )
-        })}
-        <button onClick={() => {setUser(null); setToken(null); localStorage.clear();}}>Logout</button>
-    </div>
-)};
+    <Row>
+        {!user ? (
+            <Col md={5}>
+            <LoginView onLoggedIn={(user) => setUser(user)} />
+            or
+            <SignupView/>
+            </Col>
+        ): selectedMovie ? (
+            <Col md={8}>
+             <MovieView
+                movieData={selectedMovie}
+                onBackClick={() => setSelectedMovie(null)}
+            />
+            </Col>
+        ): movies.length === 0 ? (
+            <div>There are no movies!</div>
+        ) : (
+            <>
+                {movies.map((movie) => {
+                    <Col md={3} key = {movie.id} className='mb-5'>
+                        <MovieCard
+                            movieData = {movie}
+                            onMovieClick = {(newSelectedMovie) => {
+                                setSelectedMovie(newSelectedMovie);
+                            }}
+                        />
+                    </Col>
+                })}
+            </>
+        )
+    }
+    </Row>
+)
+};
