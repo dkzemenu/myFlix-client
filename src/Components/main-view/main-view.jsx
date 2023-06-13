@@ -74,7 +74,7 @@ return (
                             ) : movies.length ===0 ?(
                                 <Col> There are no movies here! </Col>
                             ) : (
-                                <Col><MovieView movieData={selectedMovie}/></Col>
+                                <Col><MovieView movieData={movies}/></Col>
                             )
                             }
                         </>
@@ -106,39 +106,6 @@ return (
                         </>
                     }
                 />
-            {/* {!user ? (
-                    <Col md={5}>
-                    <LoginView onLoggedIn={(user) => setUser(user)} />
-                    or
-                    <SignupView/>
-                    </Col>
-                ): selectedMovie ? (
-                    <Col md={8}>
-                    <MovieView
-                        movieData={selectedMovie}
-                        onBackClick={() => setSelectedMovie(null)}
-                    />
-                    </Col>
-                ): movies.length === 0 ? (
-                    <div>There are no movies!</div>
-                ) :(
-                    <>
-                    {movies.map((movie) => {
-                        return (
-                            <Col md={3} key = {movie.id} className='mb-5'>
-                            <MovieCard
-                                movieData = {movie}
-                                onMovieClick = {(newSelectedMovie) => {
-                                    setSelectedMovie(newSelectedMovie);
-                                }}
-                            />
-                        </Col>
-                        )
-                    })}
-                        <button onClick={() => {setUser(null); setToken(null); localStorage.clear();}}>Logout</button>
-                    </>
-                    )
-            } */}
             </Routes>
         </Row>
     </BrowserRouter>

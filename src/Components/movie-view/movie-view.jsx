@@ -1,17 +1,27 @@
-import "./movie-view.scss";
+import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import './movie-view.scss';
 
-export const MovieView = ({movieData, onBackClick}) => {
+export const MovieView = ({movieData}) => {
+    const { movieId } = useParams();
+    const movie = movieData.find((m) => m._id === movieId) || {} ; 
+    console.log(movieId);
     return (
         <div>
             <div>
+                <img className='w-100' src ={movie.image} />
+            </div>
+            <div>
                 <span>Title: </span>
-                <span>{movieData.title} </span>
+                <span>{movie.title} </span>
             </div>
             <div>
                 <span>Description: </span>
-                <span>{movieData.description} </span>
+                <span>{movie.description} </span>
             </div>
-            <button onClick={onBackClick} className="back-button">Back</button>
+            <Link to={`/`} >
+                <button className="back-button">Back</button>
+            </Link>
         </div>
     )
 }
