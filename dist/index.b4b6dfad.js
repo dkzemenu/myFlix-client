@@ -27198,7 +27198,7 @@ const MainView = ()=>{
         if (!token) return;
         fetch("https://movieapi-lcrt.onrender.com/movies", {
             headers: {
-                Authorization: "Bearer${token}"
+                Authorization: `Bearer${token}`
             }
         }).then((response)=>response.json()).then((data)=>{
             const moviesFromApi = data.map((doc)=>{
@@ -27258,27 +27258,41 @@ const MainView = ()=>{
             lineNumber: 55,
             columnNumber: 13
         }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-            children: movies.map((movie)=>{
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
-                    md: 3,
-                    className: "mb-5",
-                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                        movieData: movie,
-                        onMovieClick: (newSelectedMovie)=>{
-                            setSelectedMovie(newSelectedMovie);
-                        }
-                    }, void 0, false, {
+            children: [
+                movies.map((movie)=>{
+                    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                        md: 3,
+                        className: "mb-5",
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                            movieData: movie,
+                            onMovieClick: (newSelectedMovie)=>{
+                                setSelectedMovie(newSelectedMovie);
+                            }
+                        }, void 0, false, {
+                            fileName: "src/Components/main-view/main-view.jsx",
+                            lineNumber: 61,
+                            columnNumber: 25
+                        }, undefined)
+                    }, movie.id, false, {
                         fileName: "src/Components/main-view/main-view.jsx",
                         lineNumber: 60,
                         columnNumber: 25
-                    }, undefined)
-                }, movie.id, false, {
+                    }, undefined);
+                }),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                    onClick: ()=>{
+                        setUser(null);
+                        setToken(null);
+                        localStorage.clear();
+                    },
+                    children: "Logout"
+                }, void 0, false, {
                     fileName: "src/Components/main-view/main-view.jsx",
-                    lineNumber: 59,
-                    columnNumber: 21
-                }, undefined);
-            })
-        }, void 0, false)
+                    lineNumber: 70,
+                    columnNumber: 13
+                }, undefined)
+            ]
+        }, void 0, true)
     }, void 0, false, {
         fileName: "src/Components/main-view/main-view.jsx",
         lineNumber: 40,

@@ -20,7 +20,7 @@ useEffect(() => {
         return;
     }
     
-    fetch ('https://movieapi-lcrt.onrender.com/movies',{headers: {Authorization: 'Bearer${token}'}})
+    fetch ('https://movieapi-lcrt.onrender.com/movies',{headers: {Authorization: `Bearer${token}`}})
     .then ((response) => response.json())
     .then((data) => {
         const moviesFromApi = data.map((doc) => {
@@ -56,7 +56,8 @@ return (
         ) : (
             <>
                 {movies.map((movie) => {
-                    <Col md={3} key = {movie.id} className='mb-5'>
+                    return (
+                        <Col md={3} key = {movie.id} className='mb-5'>
                         <MovieCard
                             movieData = {movie}
                             onMovieClick = {(newSelectedMovie) => {
@@ -64,7 +65,9 @@ return (
                             }}
                         />
                     </Col>
+                    )
                 })}
+            <button onClick={() => {setUser(null); setToken(null); localStorage.clear();}}>Logout</button>
             </>
         )
     }
