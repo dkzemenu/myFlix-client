@@ -75,8 +75,7 @@ return (
                                 <Col> There are no movies here! </Col>
                             ) : (
                                 <Col><MovieView movieData={movies}/></Col>
-                            )
-                            }
+                            )}
                         </>
                     }
                 />

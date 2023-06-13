@@ -27302,7 +27302,7 @@ const MainView = ()=>{
                         }, void 0, false)
                     }, void 0, false, {
                         fileName: "src/Components/main-view/main-view.jsx",
-                        lineNumber: 83,
+                        lineNumber: 82,
                         columnNumber: 17
                     }, undefined)
                 ]
