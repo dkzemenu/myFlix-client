@@ -27380,7 +27380,7 @@ const MovieCard = ({ movieData  })=>{
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                        to: `/movies/${encodeURIComponent(movieData.id)}`,
+                        to: `/movies/${encodeURIComponent(movieData._id)}`,
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                             variant: "link",
                             children: " Open "
@@ -27412,7 +27412,8 @@ MovieCard.propTypes = {
     movieData: (0, _propTypesDefault.default).shape({
         title: (0, _propTypesDefault.default).string,
         image: (0, _propTypesDefault.default).string,
-        description: (0, _propTypesDefault.default).string
+        description: (0, _propTypesDefault.default).string,
+        _id: (0, _propTypesDefault.default).string
     }).isRequired
 };
 var _c;
