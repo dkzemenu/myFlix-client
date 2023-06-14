@@ -9,13 +9,13 @@ export const MovieView = ({movieData}) => {
     return (
         <div>
             <div>
-                <img className='w-100' src ={movie.image} />
+                <img className='w-25' src ={movie.image} />
             </div>
-            <div>
+            <div className='w-50' >
                 <span>Title: </span>
                 <span>{movie.title} </span>
             </div>
-            <div>
+            <div className='w-50' >
                 <span>Description: </span>
                 <span>{movie.description} </span>
             </div>

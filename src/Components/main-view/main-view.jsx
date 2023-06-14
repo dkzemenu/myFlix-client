@@ -3,6 +3,7 @@ import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
 import { SignupView } from '../signup-view/signup-view';
+import { NavigationBar } from '../navigation-bar/navigation-bar';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { BrowserRouter,Routes, Route, Navigate } from 'react-router-dom';
@@ -15,12 +16,11 @@ export const MainView = () => {
     const [movies, setMovies] = useState ([]);
     const [selectedMovie, setSelectedMovie] = useState(null);
   
-
+//fetch data from API
 useEffect(() => {
     if (!token) {
         return;
     }
-    
     fetch ('https://movieapi-lcrt.onrender.com/movies',{headers: {Authorization: `Bearer${token}`}})
     .then ((response) => response.json())
     .then((data) => {
@@ -39,8 +39,10 @@ useEffect(() => {
 
 return (
     <BrowserRouter>
+        <NavigationBar user={user} onLoggedOut={()=>{setUser(null);}} />
         <Row>
             <Routes>
+{/* allow users to signup for a new account */}
                 <Route 
                     path='/signup'
                     element={ 
@@ -53,6 +55,7 @@ return (
                         </>
                     }
                 />
+{/* allow existing users to log in  */}
                 <Route
                     path='/login'
                     element={
@@ -65,6 +68,7 @@ return (
                         </>
                     }
                 />
+{/* allow exisitng user to access and view movie datbase by individual movies */}
                 <Route
                     path='/movies/:movieId'
                     element={
@@ -79,6 +83,7 @@ return (
                         </>
                     }
                 />
+{/* allow exisitng users to view all movie database */}
                 <Route 
                     path='/'
                     element={
@@ -98,7 +103,6 @@ return (
                                             )
                                         })
                                     }
-                                    <button onClick={() => {setUser(null); setToken(null); localStorage.clear();}}>Logout</button>
                                 </>
                             )
                             }
