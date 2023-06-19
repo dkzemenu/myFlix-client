@@ -3,8 +3,8 @@ import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-export const LoginView = ({onLoggedIn}) => {
-    const [username, setUsername] = useState("");
+export const ProfileDelete = ({ storedUser, token }) => {
+    const [username, setUsername] = useState(storedUser.Username);
     const [password, setPassword] = useState("");
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -14,26 +14,24 @@ export const LoginView = ({onLoggedIn}) => {
             Password: password
         };
 
-        fetch("https://movieapi-lcrt.onrender.com/login", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
+        fetch(`https://movieapi-lcrt.onrender.com/users/${storedUser.Username}`, {
+            method: "DELETE",
+            headers: {"Content-Type": "application/json", Authorization: `Bearer ${token}`},
             body: JSON.stringify(data)
         })
         .then ((response) => response.json())
         .then((data) => 
-            {
-            console.log("Login Response:", data)
-            if (data.user) {
-                localStorage.setItem("user", JSON.stringify(data.user));
-                localStorage.setItem("token", data.token);
-                onLoggedIn(data.user, data.token);
-              } else {
-                alert("No Such User");
-              }
-            })
-            .catch((e) =>{
-                alert("Something went wrong");
-            });
+            { 
+            alert ('Delete Successful');
+            console.log('Delete Successful');
+                setUser(null);
+                localStorage.setItem("user", null);
+                localStorage.setItem("token", null);
+        })  
+        .catch((err) => {
+            alert ('Something went wrong');
+            console.error(err);
+        }) 
     }
 
     return (
@@ -45,7 +43,6 @@ export const LoginView = ({onLoggedIn}) => {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
-                    minLength={3}
                 />
             </Form.Group>
             <Form.Group controlId="formPassword">
@@ -57,7 +54,7 @@ export const LoginView = ({onLoggedIn}) => {
                     required
                 />
             </Form.Group>
-        <Button variant="primary" type="submit" >Submit</Button>
+        <Button variant="primary" type="submit" >DELETE</Button>
         </Form>
     )
 }

@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -21,7 +22,7 @@ export const SignupView = () => {
         fetch("https://movieapi-lcrt.onrender.com/users", {
             method: "POST",
             body: JSON.stringify(data),
-            headers: {"Content-Type": "application/json"}
+            headers: {"Content-Type": "application/json", Authorization: `Bearer ${token}`}
         }).then((response) => {
             if(response.ok) {
                 alert ("Signup Successful");

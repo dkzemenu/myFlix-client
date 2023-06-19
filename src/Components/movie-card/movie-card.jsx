@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-export const MovieCard = ({ movieData }) => {
+import { FavoriteButton } from './favorite-button';
+
+export const MovieCard = ({ movieData, favoriteMovie, token, user }) => {
     return (
         <Card className='h-100'>
             <Card.Img variant='top' src={movieData.image}/>
@@ -13,6 +15,7 @@ export const MovieCard = ({ movieData }) => {
                 <Link to={`/movies/${encodeURIComponent(movieData._id)}`}>
                     <Button variant='link' > Open </Button>
                 </Link>
+                <FavoriteButton movieData={movieData} favoriteMovie={favoriteMovie} token={token} user={user} />
             </Card.Body>
         </Card>
     )
