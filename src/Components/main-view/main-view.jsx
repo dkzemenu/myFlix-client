@@ -11,7 +11,7 @@ import { SignupView } from '../signup-view/signup-view';
 import { NavigationBar } from '../navigation-bar/navigation-bar';
 import { ProfileView } from '../profile-view/profile-view';
 import { ProfileSettings } from '../profile-view/settings';
-
+import { FavoriteMoviesView } from '../profile-view/favorite-movies-view';
 
 export const MainView = () => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -21,6 +21,7 @@ export const MainView = () => {
     const [movies, setMovies] = useState ([]);
     const [selectedMovie, setSelectedMovie] = useState(null);
     const [favoriteMovie, setFavoriteMovie] = useState([]);
+    const [favoriteMovieList, setFavoriteMovieList] = useState([]);
 
 //fetch data from API
 useEffect(() => {
@@ -120,7 +121,9 @@ return (
                                                     movieData={movie} 
                                                     favoriteMovie={favoriteMovie}
                                                     user={user}
-                                                    token={token}
+                                                    storedToken={storedToken}
+                                                    favoriteMovieList={favoriteMovieList}
+                                                    setFavoriteMovieList={setFavoriteMovieList}
                                                     />
                                             </Col>
                                             )
@@ -144,6 +147,10 @@ return (
                                 storedToken={storedToken}
                                 token={token}
                                 favoriteMovie={favoriteMovie}
+                            />
+                            <FavoriteMoviesView
+                                favoriteMovie={favoriteMovie}
+                                favoriteMovieList={favoriteMovieList}
                             />
                         </Col>
                     ): (

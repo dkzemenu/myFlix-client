@@ -1,34 +1,34 @@
 import {Button} from 'react-bootstrap';
 
-export const FavoriteButton = ({ token, favoriteMovie, movieData}) => {
+export const FavoriteButton = ({ favoriteMovie, movieData, user, storedToken, favoriteMovieList, setFavoriteMovieList}) => {
     const handleSubmit = (event) => {
         event.preventDefault();
     
     let data = movieData;
 
         if(favoriteMovie.includes(movieData._id)) {
-            fetch(`https://movieapi-lcrt.onrender.com/movies/${movieData._id}}`, {
+            fetch(`https://movieapi-lcrt.onrender.com/users/${user.Username}/movies/${movieData._id}`, {
                 method: "PUT",
                 body: JSON.stringify(data),
-                headers: {"Content-Type": "application/json", Authorization: `Bearer ${token}`}
+                headers: {"Content-Type": "application/json", Authorization: `Bearer ${storedToken}`}
             }).then((res) => (res.json())
             ).then(() =>{
                 alert("Removed from Favorites");
-                window.location.reload();
                 console.log('remove successful');
+                setFavoriteMovieList(favoriteMovieList.filter((movie) => movie._id !== movieData._id));
         }).catch((err) => {
             alert('Something went wrong' + err);
         })
         } else {
-            fetch(`https://movieapi-lcrt.onrender.com/movies/${movieData._id}}`, {
+            fetch(`https://movieapi-lcrt.onrender.com/users/${user.Username}/movies/${movieData._id}`, {
                 method: "POST",
                 body: JSON.stringify(data),
-                headers: {"Content-Type": "application/json", Authorization: `Bearer ${token}`}
+                headers: {"Content-Type": "application/json", Authorization: `Bearer ${storedToken}`}
             }).then((res) => (res.json()))
             .then(() => {
                 alert('Movie was added to favorites');
-                window.location.reload();
-                console.log('add successful');
+                console.log('add successful ' + movieData.title);
+                setFavoriteMovieList([...favoriteMovieList, movieData]);
             }).catch((err) => {
                 alert('Something went wrong' + err);
             })

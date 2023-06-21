@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { FavoriteButton } from './favorite-button';
 
-export const MovieCard = ({ movieData, favoriteMovie, token, user }) => {
+export const MovieCard = ({ movieData, favoriteMovie, user, storedToken, favoriteMovieList, setFavoriteMovieList }) => {
     return (
         <Card className='h-100'>
             <Card.Img variant='top' src={movieData.image}/>
@@ -15,7 +15,14 @@ export const MovieCard = ({ movieData, favoriteMovie, token, user }) => {
                 <Link to={`/movies/${encodeURIComponent(movieData._id)}`}>
                     <Button variant='link' > Open </Button>
                 </Link>
-                <FavoriteButton movieData={movieData} favoriteMovie={favoriteMovie} token={token} user={user} />
+                <FavoriteButton 
+                    movieData={movieData} 
+                    favoriteMovie={favoriteMovie}  
+                    user={user} 
+                    storedToken={storedToken}
+                    favoriteMovieList={favoriteMovieList}
+                    setFavoriteMovieList={setFavoriteMovieList}
+                />
             </Card.Body>
         </Card>
     )

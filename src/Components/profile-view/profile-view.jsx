@@ -3,13 +3,12 @@ import { Link } from 'react-router-dom';
 import {useState} from 'react';
 
 // import components 
-import { ProfileSettings } from "./settings";
-import { FavoriteMovies } from "./favorite-movies";
+import { FavoriteMoviesView } from "./favorite-movies-view";
 import { ProfileDelete } from "./profile-delete";
 import { MovieCard } from "../movie-card/movie-card";   
 
-export const ProfileView = ({ storedUser, storedToken, token, favoriteMovie }) => {
-    const [favoriteMovieList, setfavoriteMovieList] = useState([]);
+export const ProfileView = ({ storedUser, storedToken, token, favoriteMovie, favoriteMovieList }) => {
+
     return(
         <>
         <Row>
@@ -28,11 +27,6 @@ export const ProfileView = ({ storedUser, storedToken, token, favoriteMovie }) =
         <Row>
             <Col>Birthday:</Col>
             <Col>{storedUser.Birthday} </Col>
-        </Row>
-        <Row>
-            <Col>
-                <FavoriteMovies favoriteMovie={favoriteMovie}/>
-            </Col>
         </Row>
         <Row>            
             <Col>
