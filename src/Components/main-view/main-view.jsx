@@ -57,7 +57,9 @@ return (
                             {user ? (
                                 <Navigate to='/' />
                             ):(
-                                <Col md={5} ><SignupView/></Col>
+                                <Col md={5} ><SignupView
+                                    token={token}
+                                /></Col>
                             )}
                         </>
                     }
