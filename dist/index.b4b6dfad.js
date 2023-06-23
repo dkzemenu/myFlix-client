@@ -27328,6 +27328,7 @@ const MainView = ()=>{
                                     children: [
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _profileView.ProfileView), {
                                             storedUser: storedUser,
+                                            user: user,
                                             storedToken: storedToken,
                                             token: token,
                                             favoriteMovie: favoriteMovie
@@ -27361,7 +27362,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/Components/main-view/main-view.jsx",
-                            lineNumber: 165,
+                            lineNumber: 166,
                             columnNumber: 17
                         }, undefined)
                     ]
@@ -46481,7 +46482,7 @@ const FavoriteButton = ({ favoriteMovie , movieData , user , storedToken , favor
     const handleSubmit = (event)=>{
         event.preventDefault();
         let data = movieData;
-        if (favoriteMovie.includes(movieData._id)) fetch(`https://movieapi-lcrt.onrender.com/users/${user.Username}/movies/${movieData._id}`, {
+        if (favoriteMovieList.includes(movieData._id)) fetch(`https://movieapi-lcrt.onrender.com/users/${user.Username}/movies/${movieData._id}`, {
             method: "PUT",
             body: JSON.stringify(data),
             headers: {
@@ -47108,7 +47109,7 @@ var _react = require("react");
 var _favoriteMoviesView = require("./favorite-movies-view");
 var _profileDelete = require("./profile-delete");
 var _movieCard = require("../movie-card/movie-card");
-const ProfileView = ({ storedUser , storedToken , token , favoriteMovie , favoriteMovieList  })=>{
+const ProfileView = ({ storedUser , storedToken , token , favoriteMovie , favoriteMovieList , user  })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
@@ -47216,7 +47217,8 @@ const ProfileView = ({ storedUser , storedToken , token , favoriteMovie , favori
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _profileDelete.ProfileDelete), {
                             storedUser: storedUser,
                             storedToken: storedToken,
-                            token: token
+                            token: token,
+                            user: user
                         }, void 0, false, {
                             fileName: "src/Components/profile-view/profile-view.jsx",
                             lineNumber: 34,
@@ -47265,28 +47267,16 @@ var _buttonDefault = parcelHelpers.interopDefault(_button);
 var _s = $RefreshSig$();
 const ProfileDelete = ({ storedUser , token  })=>{
     _s();
-    const [username, setUsername] = (0, _react.useState)(storedUser.Username);
-    const [password, setPassword] = (0, _react.useState)("");
+    const [confirmPassword, setConfirmPassword] = (0, _react.useState)();
     const handleSubmit = (event)=>{
         event.preventDefault();
-        const data = {
-            Username: username,
-            Password: password
-        };
-        fetch(`https://movieapi-lcrt.onrender.com/users/${storedUser.Username}`, {
+        fetch(`https://movieapi-lcrt.onrender.com/users/${storedUser}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`
-            },
-            body: JSON.stringify(data)
-        }).then((response)=>response.json()).then((data)=>{
-            alert("Delete Successful");
-            console.log("Delete Successful");
-            setUser(null);
-            localStorage.setItem("user", null);
-            localStorage.setItem("token", null);
-        }).catch((err)=>{
+            }
+        }).then(alert("Delete Successful"), console.log("Delete Successful"), localStorage.setItem("user", null), localStorage.setItem("token", null)).catch((err)=>{
             alert("Something went wrong");
             console.error(err);
         });
@@ -47295,55 +47285,29 @@ const ProfileDelete = ({ storedUser , token  })=>{
         onSubmit: handleSubmit,
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
-                controlId: "formUsername",
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
-                        children: "Username:"
-                    }, void 0, false, {
-                        fileName: "src/Components/profile-view/profile-delete.jsx",
-                        lineNumber: 40,
-                        columnNumber: 17
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
-                        type: "text",
-                        value: username,
-                        onChange: (e)=>setUsername(e.target.value),
-                        required: true
-                    }, void 0, false, {
-                        fileName: "src/Components/profile-view/profile-delete.jsx",
-                        lineNumber: 41,
-                        columnNumber: 17
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/Components/profile-view/profile-delete.jsx",
-                lineNumber: 39,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
                 controlId: "formPassword",
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
                         children: "Password:"
                     }, void 0, false, {
                         fileName: "src/Components/profile-view/profile-delete.jsx",
-                        lineNumber: 49,
+                        lineNumber: 31,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
                         type: "password",
-                        value: password,
-                        onChange: (e)=>setPassword(e.target.value),
+                        value: confirmPassword,
+                        onChange: (e)=>setConfirmPassword(e.target.value),
                         required: true
                     }, void 0, false, {
                         fileName: "src/Components/profile-view/profile-delete.jsx",
-                        lineNumber: 50,
+                        lineNumber: 32,
                         columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/Components/profile-view/profile-delete.jsx",
-                lineNumber: 48,
+                lineNumber: 30,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
@@ -47352,17 +47316,17 @@ const ProfileDelete = ({ storedUser , token  })=>{
                 children: "DELETE"
             }, void 0, false, {
                 fileName: "src/Components/profile-view/profile-delete.jsx",
-                lineNumber: 57,
+                lineNumber: 39,
                 columnNumber: 9
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/Components/profile-view/profile-delete.jsx",
-        lineNumber: 38,
+        lineNumber: 29,
         columnNumber: 9
     }, undefined);
 };
-_s(ProfileDelete, "Hy9CLojeVXjIKOYkSFMgpQYUas8=");
+_s(ProfileDelete, "NlLCBFmBct6wMv532vscv0rtBaA=");
 _c = ProfileDelete;
 var _c;
 $RefreshReg$(_c, "ProfileDelete");

@@ -7,7 +7,7 @@ import { FavoriteMoviesView } from "./favorite-movies-view";
 import { ProfileDelete } from "./profile-delete";
 import { MovieCard } from "../movie-card/movie-card";   
 
-export const ProfileView = ({ storedUser, storedToken, token, favoriteMovie, favoriteMovieList }) => {
+export const ProfileView = ({ storedUser, storedToken, token, favoriteMovie, favoriteMovieList, user }) => {
 
     return(
         <>
@@ -31,7 +31,7 @@ export const ProfileView = ({ storedUser, storedToken, token, favoriteMovie, fav
         <Row>            
             <Col>
                 <h2> Delete Profile </h2>
-                <ProfileDelete storedUser={storedUser} storedToken={storedToken} token={token} />
+                <ProfileDelete storedUser={storedUser} storedToken={storedToken} token={token} user={user} />
             </Col>
         </Row>
         </>

@@ -4,30 +4,21 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 export const ProfileDelete = ({ storedUser, token }) => {
-    const [username, setUsername] = useState(storedUser.Username);
-    const [password, setPassword] = useState("");
+const [confirmPassword, setConfirmPassword] = useState();
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        const data = {
-            Username: username,
-            Password: password
-        };
-
-        fetch(`https://movieapi-lcrt.onrender.com/users/${storedUser.Username}`, {
+        fetch(`https://movieapi-lcrt.onrender.com/users/${storedUser}`, {
             method: "DELETE",
-            headers: {"Content-Type": "application/json", Authorization: `Bearer ${token}`},
-            body: JSON.stringify(data)
+            headers: {"Content-Type": "application/json", Authorization: `Bearer ${token}`}
         })
-        .then ((response) => response.json())
-        .then((data) => 
-            { 
-            alert ('Delete Successful');
-            console.log('Delete Successful');
-                setUser(null);
-                localStorage.setItem("user", null);
-                localStorage.setItem("token", null);
-        })  
+        .then(
+            alert ('Delete Successful'),
+            console.log('Delete Successful'),
+                localStorage.setItem("user", null),
+                localStorage.setItem("token", null),
+                // window.location.reload()
+    )  
         .catch((err) => {
             alert ('Something went wrong');
             console.error(err);
@@ -36,21 +27,12 @@ export const ProfileDelete = ({ storedUser, token }) => {
 
     return (
         <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formUsername">
-                <Form.Label>Username:</Form.Label>
-                <Form.Control
-                    type="text"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    required
-                />
-            </Form.Group>
             <Form.Group controlId="formPassword">
                 <Form.Label>Password:</Form.Label>
                 <Form.Control
                     type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
                     required
                 />
             </Form.Group>

@@ -6,7 +6,7 @@ export const FavoriteButton = ({ favoriteMovie, movieData, user, storedToken, fa
     
     let data = movieData;
 
-        if(favoriteMovie.includes(movieData._id)) {
+        if(favoriteMovieList.includes(movieData._id)) {
             fetch(`https://movieapi-lcrt.onrender.com/users/${user.Username}/movies/${movieData._id}`, {
                 method: "PUT",
                 body: JSON.stringify(data),

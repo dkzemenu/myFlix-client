@@ -146,6 +146,7 @@ return (
                         <Col>
                             <ProfileView 
                                 storedUser={storedUser}
+                                user={user}
                                 storedToken={storedToken}
                                 token={token}
                                 favoriteMovie={favoriteMovie}
