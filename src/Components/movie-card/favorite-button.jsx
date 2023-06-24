@@ -8,7 +8,7 @@ export const FavoriteButton = ({ favoriteMovie, movieData, user, storedToken, fa
 
         if(favoriteMovieList.includes(movieData._id)) {
             fetch(`https://movieapi-lcrt.onrender.com/users/${user.Username}/movies/${movieData._id}`, {
-                method: "PUT",
+                method: "DELETE",
                 body: JSON.stringify(data),
                 headers: {"Content-Type": "application/json", Authorization: `Bearer ${storedToken}`}
             }).then((res) => (res.json())

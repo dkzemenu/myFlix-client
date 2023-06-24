@@ -3,21 +3,25 @@ import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-export const ProfileDelete = ({ storedUser, token }) => {
-const [confirmPassword, setConfirmPassword] = useState();
+export const ProfileDelete = ({ user, token, storedToken }) => {
+    const [confirmPassword, setConfirmPassword] = useState(null);
+
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        fetch(`https://movieapi-lcrt.onrender.com/users/${storedUser}`, {
+        console.log(storedToken);
+
+        fetch(`https://movieapi-lcrt.onrender.com/users/${user.Username}`, {
             method: "DELETE",
-            headers: {"Content-Type": "application/json", Authorization: `Bearer ${token}`}
+            headers: {"Content-Type": "application/json", Authorization: `Bearer ${storedToken}`},
+            body: JSON.stringify({password: confirmPassword})
         })
         .then(
             alert ('Delete Successful'),
             console.log('Delete Successful'),
                 localStorage.setItem("user", null),
                 localStorage.setItem("token", null),
-                // window.location.reload()
+                window.location.reload()
     )  
         .catch((err) => {
             alert ('Something went wrong');
