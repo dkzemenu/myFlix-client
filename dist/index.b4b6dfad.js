@@ -47502,7 +47502,7 @@ const ProfileSettings = ({ storedUser , token  })=>{
                 }, void 0, true, {
                     fileName: "src/Components/profile-view/settings.jsx",
                     lineNumber: 60,
-                    columnNumber: 9
+                    columnNumber: 13
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
                     controlId: "formPassword",
@@ -47528,7 +47528,7 @@ const ProfileSettings = ({ storedUser , token  })=>{
                 }, void 0, true, {
                     fileName: "src/Components/profile-view/settings.jsx",
                     lineNumber: 70,
-                    columnNumber: 9
+                    columnNumber: 13
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
                     controlId: "formEmail",
@@ -47553,7 +47553,7 @@ const ProfileSettings = ({ storedUser , token  })=>{
                 }, void 0, true, {
                     fileName: "src/Components/profile-view/settings.jsx",
                     lineNumber: 79,
-                    columnNumber: 9
+                    columnNumber: 13
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
                     controlId: "formBirthday",
@@ -47578,7 +47578,7 @@ const ProfileSettings = ({ storedUser , token  })=>{
                 }, void 0, true, {
                     fileName: "src/Components/profile-view/settings.jsx",
                     lineNumber: 87,
-                    columnNumber: 9
+                    columnNumber: 13
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
                     variant: "primary",

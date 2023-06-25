@@ -57,7 +57,7 @@ export const ProfileSettings =({storedUser, token}) => {
      return(
         <>
         <Form onSubmit={handleSubmit}> 
-        <Form.Group controlId="formUsername">
+            <Form.Group controlId="formUsername">
                 <Form.Label>Username:</Form.Label>
                 <Form.Control
                     type="text"
@@ -66,8 +66,8 @@ export const ProfileSettings =({storedUser, token}) => {
                     required
                     minLength={3}
                 />
-        </Form.Group>
-        <Form.Group controlId="formPassword">
+            </Form.Group>
+            <Form.Group controlId="formPassword">
                 <Form.Label>Password:</Form.Label>
                 <Form.Control
                     type="password"
@@ -75,58 +75,25 @@ export const ProfileSettings =({storedUser, token}) => {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
-        </Form.Group>
-        <Form.Group controlId="formEmail">
+            </Form.Group>
+            <Form.Group controlId="formEmail">
                 <Form.Label>Email:</Form.Label>
                 <Form.Control
                     type="email"
                     defaultValue={storedUser.Email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
-        </Form.Group>
-        <Form.Group controlId="formBirthday">
+            </Form.Group>
+            <Form.Group controlId="formBirthday">
                 <Form.Label>Birthday:</Form.Label>
                 <Form.Control
                     type="birthday"
                     defaultValue={storedUser.Birthday}
                     onChange={(e) => setBirthday(e.target.value)}
                 />
-        </Form.Group>
+            </Form.Group>
         <Button variant="primary" type="submit">Update</Button>
         </Form>
-        {/* <div>
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <label>Username:</label>
-                <input 
-                    type='text'
-                    name='Username'
-                    defaultValue={storedUser.Username}
-                    onChange={(e) => setUsername(e.target.value)}
-                /> <br/> 
-                <label>Password:</label>
-                <input 
-                    type='password'
-                    name='password'
-                    defaultValue={storedUser.Password}
-                    onChange={(e) => setPassword(e.target.value)}
-                /> <br/>
-                <label>Email:</label>
-                <input 
-                    type='email'
-                    name='email'
-                    defaultValue={storedUser.Email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-                <label>Birthday:</label>
-                <input 
-                    type='date'
-                    name='birthday'
-                    defaultValue={storedUser.Birthday}
-                    onChange={(e) => setBirthday(e.target.value)}
-                />
-            </form>
-            <button type="submit" variant='primary' onClick={handleSubmit}>Update</button>
-        </div> */}
         </>
     )
 }
