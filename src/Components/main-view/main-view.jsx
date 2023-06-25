@@ -46,7 +46,7 @@ useEffect(() => {
 
 return (
     <BrowserRouter>
-        <NavigationBar user={user} onLoggedOut={()=>{setUser(null);}} />
+        <NavigationBar user={user} onLoggedOut={()=>{setUser(null), setToken(null), <Navigate to='/'/>;}} />
         <Row>
             <Routes>
 {/* allow users to signup for a new account */}

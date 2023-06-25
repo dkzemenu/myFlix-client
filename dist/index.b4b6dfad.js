@@ -27229,7 +27229,9 @@ const MainView = ()=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navigationBar.NavigationBar), {
                 user: user,
                 onLoggedOut: ()=>{
-                    setUser(null);
+                    setUser(null), setToken(null), /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
+                        to: "/"
+                    }, void 0, false, void 0, void 0);
                 }
             }, void 0, false, {
                 fileName: "src/Components/main-view/main-view.jsx",
@@ -47363,9 +47365,31 @@ const FavoriteMoviesView = ({ favoriteMovieList  })=>{
                 lineNumber: 8,
                 columnNumber: 13
             }, undefined),
-            favoriteMovieList && favoriteMovieList.length > 0 ? favoriteMovieList.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                    children: movie.title
-                }, movie._id, false, {
+            favoriteMovieList && favoriteMovieList.length > 0 ? favoriteMovieList.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                            children: [
+                                "Title: ",
+                                movie.title
+                            ]
+                        }, movie._id, true, {
+                            fileName: "src/Components/profile-view/favorite-movies-view.jsx",
+                            lineNumber: 12,
+                            columnNumber: 25
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                            children: [
+                                " ",
+                                movie.description,
+                                " "
+                            ]
+                        }, void 0, true, {
+                            fileName: "src/Components/profile-view/favorite-movies-view.jsx",
+                            lineNumber: 13,
+                            columnNumber: 25
+                        }, undefined)
+                    ]
+                }, void 0, true, {
                     fileName: "src/Components/profile-view/favorite-movies-view.jsx",
                     lineNumber: 11,
                     columnNumber: 25
@@ -47373,7 +47397,7 @@ const FavoriteMoviesView = ({ favoriteMovieList  })=>{
                 children: " No movies in your favorites"
             }, void 0, false, {
                 fileName: "src/Components/profile-view/favorite-movies-view.jsx",
-                lineNumber: 13,
+                lineNumber: 16,
                 columnNumber: 25
             }, undefined)
         ]
@@ -47405,13 +47429,17 @@ parcelHelpers.export(exports, "ProfileSettings", ()=>ProfileSettings);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
+var _form = require("react-bootstrap/Form");
+var _formDefault = parcelHelpers.interopDefault(_form);
+var _button = require("react-bootstrap/Button");
+var _buttonDefault = parcelHelpers.interopDefault(_button);
 var _s = $RefreshSig$();
-const ProfileSettings = ({ storedUser  })=>{
+const ProfileSettings = ({ storedUser , token  })=>{
     _s();
     const [username, setUsername] = (0, _react.useState)(storedUser.Username);
     const [password, setPassword] = (0, _react.useState)(storedUser.Password);
-    const [email, setEmail] = (0, _react.useState)(storedUser.email);
-    const [birthday, setBirthday] = (0, _react.useState)(storedUser.birthday);
+    const [email, setEmail] = (0, _react.useState)(storedUser.Email);
+    const [birthday, setBirthday] = (0, _react.useState)(storedUser.Birthday);
     const handleSubmit = (event)=>{
         event.preventDefault();
         const data = {
@@ -47432,7 +47460,7 @@ const ProfileSettings = ({ storedUser  })=>{
                 alert("Success");
                 localStorage.setItem("user", null);
                 localStorage.setItem("token", null);
-                onChanging(result.user, result.token);
+            // onChange(result.user, result.token)
             }
         }).catch((err)=>{
             if (!username) alert("Enter a new username");
@@ -47446,74 +47474,76 @@ const ProfileSettings = ({ storedUser  })=>{
         });
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default), {
+            onSubmit: handleSubmit,
             children: [
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
-                    onSubmit: (e)=>handleSubmit(e),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
+                    controlId: "formUsername",
                     children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
                             children: "Username:"
                         }, void 0, false, {
                             fileName: "src/Components/profile-view/settings.jsx",
-                            lineNumber: 59,
+                            lineNumber: 61,
                             columnNumber: 17
                         }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
                             type: "text",
-                            name: "Username",
                             defaultValue: storedUser.Username,
-                            onChange: (e)=>setUsername(e.target.value)
+                            onChange: (e)=>setUsername(e.target.value),
+                            required: true,
+                            minLength: 3
                         }, void 0, false, {
                             fileName: "src/Components/profile-view/settings.jsx",
-                            lineNumber: 60,
+                            lineNumber: 62,
                             columnNumber: 17
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/Components/profile-view/settings.jsx",
+                    lineNumber: 60,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
+                    controlId: "formPassword",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
                             children: "Password:"
                         }, void 0, false, {
                             fileName: "src/Components/profile-view/settings.jsx",
-                            lineNumber: 66,
+                            lineNumber: 71,
                             columnNumber: 17
                         }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
                             type: "password",
-                            name: "password",
                             defaultValue: storedUser.Password,
-                            onChange: (e)=>setPassword(e.target.value)
+                            onChange: (e)=>setPassword(e.target.value),
+                            required: true
                         }, void 0, false, {
                             fileName: "src/Components/profile-view/settings.jsx",
-                            lineNumber: 67,
+                            lineNumber: 72,
                             columnNumber: 17
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/Components/profile-view/settings.jsx",
+                    lineNumber: 70,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
+                    controlId: "formEmail",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
                             children: "Email:"
-                        }, void 0, false, {
-                            fileName: "src/Components/profile-view/settings.jsx",
-                            lineNumber: 73,
-                            columnNumber: 17
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
-                            type: "email",
-                            name: "email",
-                            defaultValue: storedUser.email,
-                            onChange: (e)=>setEmail(e.target.value)
-                        }, void 0, false, {
-                            fileName: "src/Components/profile-view/settings.jsx",
-                            lineNumber: 74,
-                            columnNumber: 17
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
-                            children: "Birthday:"
                         }, void 0, false, {
                             fileName: "src/Components/profile-view/settings.jsx",
                             lineNumber: 80,
                             columnNumber: 17
                         }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
-                            type: "date",
-                            name: "birthday",
-                            defaultValue: storedUser.Birthday,
-                            onChange: (e)=>setBirthday(e.target.value)
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
+                            type: "email",
+                            defaultValue: storedUser.Email,
+                            onChange: (e)=>setEmail(e.target.value)
                         }, void 0, false, {
                             fileName: "src/Components/profile-view/settings.jsx",
                             lineNumber: 81,
@@ -47522,27 +47552,52 @@ const ProfileSettings = ({ storedUser  })=>{
                     ]
                 }, void 0, true, {
                     fileName: "src/Components/profile-view/settings.jsx",
-                    lineNumber: 58,
-                    columnNumber: 13
+                    lineNumber: 79,
+                    columnNumber: 9
                 }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                    type: "submit",
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
+                    controlId: "formBirthday",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
+                            children: "Birthday:"
+                        }, void 0, false, {
+                            fileName: "src/Components/profile-view/settings.jsx",
+                            lineNumber: 88,
+                            columnNumber: 17
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
+                            type: "birthday",
+                            defaultValue: storedUser.Birthday,
+                            onChange: (e)=>setBirthday(e.target.value)
+                        }, void 0, false, {
+                            fileName: "src/Components/profile-view/settings.jsx",
+                            lineNumber: 89,
+                            columnNumber: 17
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/Components/profile-view/settings.jsx",
+                    lineNumber: 87,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
                     variant: "primary",
+                    type: "submit",
                     children: "Update"
                 }, void 0, false, {
                     fileName: "src/Components/profile-view/settings.jsx",
-                    lineNumber: 88,
-                    columnNumber: 13
+                    lineNumber: 95,
+                    columnNumber: 9
                 }, undefined)
             ]
         }, void 0, true, {
             fileName: "src/Components/profile-view/settings.jsx",
-            lineNumber: 57,
+            lineNumber: 59,
             columnNumber: 9
         }, undefined)
     }, void 0, false);
 };
-_s(ProfileSettings, "e7IbjrO3moitVfYLnLIosoKJZ2Q=");
+_s(ProfileSettings, "R9tFvcCb+285Pdb+daP4yvDEWy4=");
 _c = ProfileSettings;
 var _c;
 $RefreshReg$(_c, "ProfileSettings");
@@ -47552,6 +47607,6 @@ $RefreshReg$(_c, "ProfileSettings");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq"}]},["4s3Ar","1xC6H","d8Dch"], "d8Dch", "parcelRequireaec4")
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq","react-bootstrap/Form":"iBZ80","react-bootstrap/Button":"aPzUt"}]},["4s3Ar","1xC6H","d8Dch"], "d8Dch", "parcelRequireaec4")
 
 //# sourceMappingURL=index.b4b6dfad.js.map
