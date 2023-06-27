@@ -11,7 +11,6 @@ import { SignupView } from '../signup-view/signup-view';
 import { NavigationBar } from '../navigation-bar/navigation-bar';
 import { ProfileView } from '../profile-view/profile-view';
 import { ProfileSettings } from '../profile-view/settings';
-import { FavoriteMoviesView } from '../profile-view/favorite-movies-view';
 
 export const MainView = () => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -27,7 +26,7 @@ export const MainView = () => {
 useEffect(() => {
     if (!token) {
         return;
-    }
+    } else {
     fetch ('https://movieapi-lcrt.onrender.com/movies',{headers: {Authorization: `Bearer${token}`}})
     .then ((response) => response.json())
     .then((data) => {
@@ -42,11 +41,17 @@ useEffect(() => {
         setMovies(moviesFromApi);
         console.log(data);
     });
-}, [token]);
+}}, [token]);
 
 return (
     <BrowserRouter>
-        <NavigationBar user={user} onLoggedOut={()=>{setUser(null), setToken(null), <Navigate to='/'/>;}} />
+        <NavigationBar user={user} 
+        onLoggedOut={()=>{setUser(null), 
+                        setToken(null), 
+                        localStorage.clear(),
+                        <Navigate to='/'/>;
+                        }} 
+                        />
         <Row>
             <Routes>
 {/* allow users to signup for a new account */}
@@ -77,19 +82,6 @@ return (
                         </>
                     }
                 />
-{/* allow exisiting users to view their user profile and user info  */}
-                {/* <Route 
-                    path='/user/:userId'
-                    element={
-                        <>
-                             { !user ? (
-                                <Navigate to='/login' replace/>
-                             ) : (
-                                <Col><ProfileView onLoggedIn={(user) => setUser(user)}/></Col>
-                            )}
-                        </>
-                            }
-                /> */}
 {/* allow exisitng user to access and view movie datbase by individual movies */}
                 <Route
                     path='/movies/:movieId'
@@ -100,7 +92,12 @@ return (
                             ) : movies.length ===0 ?(
                                 <Col> There are no movies here! </Col>
                             ) : (
-                                <Col><MovieView movieData={movies}/></Col>
+                                <Col><MovieView movies={movies} 
+                                user={user} 
+                                token={token} 
+                                storedToken={storedToken}
+                                storedUser={storedUser}
+                                /></Col>
                             )}
                         </>
                     }
@@ -150,10 +147,7 @@ return (
                                 storedToken={storedToken}
                                 token={token}
                                 favoriteMovie={favoriteMovie}
-                            />
-                            <FavoriteMoviesView
-                                favoriteMovie={favoriteMovie}
-                                favoriteMovieList={favoriteMovieList}
+                                movieData={movies}
                             />
                         </Col>
                     ): (
