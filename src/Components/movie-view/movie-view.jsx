@@ -9,6 +9,18 @@ export const MovieView = ({ movies, user, token, storedToken, storedUser}) => {
     const [isFavorite, setIsFavorite] = useState(null);
     let userFav =JSON.parse(localStorage.getItem('user'));
 
+    useEffect(() => {
+        isFavoriteMovie();
+    }, []);
+
+    const isFavoriteMovie = () => {
+        if(userFav.FavoriteMovies.includes(movieId)) {
+            setIsFavorite(true);
+        } else {
+            setIsFavorite(false);
+        }
+    }
+
     const handleClick = () => {
         if (!isFavorite) {
             fetch(`https://movieapi-lcrt.onrender.com/users/${user.Username}/movies/${movieId}`, {
