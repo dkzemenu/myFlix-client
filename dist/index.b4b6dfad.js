@@ -41236,6 +41236,10 @@ $RefreshReg$(_c, "SignupView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
+<<<<<<< Updated upstream
 },{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap/Form":"iBZ80","react-bootstrap/Button":"aPzUt","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["4s3Ar","1xC6H","d8Dch"], "d8Dch", "parcelRequireaec4")
+=======
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"aSD5I","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"kRPH4"}]},["2F9Rh","hn82O","d8Dch"], "d8Dch", "parcelRequireaec4")
+>>>>>>> Stashed changes
 
 //# sourceMappingURL=index.b4b6dfad.js.map
