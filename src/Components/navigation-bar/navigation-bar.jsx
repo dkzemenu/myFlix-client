@@ -2,8 +2,9 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import {Link} from 'react-router-dom';
+import { SearchBar } from '../search-bar/searchBar';
 
-export const NavigationBar = ({ user, onLoggedOut }) => {
+export const NavigationBar = ({ user, onLoggedOut, movies, setMovies }) => {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -22,6 +23,10 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
                     <Nav.Link as={Link} to='/'>Home</Nav.Link>
                     <Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
                     <Nav.Link as={Link} to='/users'>My Profile</Nav.Link>
+                    <SearchBar        
+                      movies={movies}
+                      setMovies={setMovies}
+                    />
                 </>
             )}    
           </Nav>
