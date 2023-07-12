@@ -45,7 +45,7 @@ useEffect(() => {
 
 return (
     <BrowserRouter>
-        <NavigationBar user={user} 
+        <NavigationBar user={user} movies={movies} setMovies={setMovies}
         onLoggedOut={()=>{setUser(null), 
                         setToken(null), 
                         localStorage.clear(),
