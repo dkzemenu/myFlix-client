@@ -11,6 +11,7 @@ import { SignupView } from '../signup-view/signup-view';
 import { NavigationBar } from '../navigation-bar/navigation-bar';
 import { ProfileView } from '../profile-view/profile-view';
 import { ProfileSettings } from '../profile-view/settings';
+import MovieForm from '../movie-form/MovieForm';
 
 export const MainView = () => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -27,7 +28,7 @@ useEffect(() => {
     if (!token) {
         return;
     } else {
-    fetch ('https://movieapi-lcrt.onrender.com/movies',{headers: {Authorization: `Bearer${token}`}})
+    fetch ('http://localhost:5000/movies',{headers: {Authorization: `Bearer ${token}`}})
     .then ((response) => response.json())
     .then((data) => {
         const moviesFromApi = data.map((doc) => {
@@ -166,6 +167,20 @@ return (
                             <ProfileSettings 
                                 storedUser={storedUser}
                             />
+                        </Col>
+                    ): (
+                        <Navigate to='/login' replace />
+                    )}
+                    </>
+                }
+                />
+                <Route 
+                path='/upload'
+                element={
+                    <>
+                    { storedUser? (
+                        <Col>
+                            <MovieForm />
                         </Col>
                     ): (
                         <Navigate to='/login' replace />

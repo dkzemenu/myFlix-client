@@ -23,7 +23,7 @@ export const MovieView = ({ movies, user, token, storedToken, storedUser}) => {
 
     const handleClick = () => {
         if (!isFavorite) {
-            fetch(`https://movieapi-lcrt.onrender.com/users/${user.Username}/movies/${movieId}`, {
+            fetch(`http://localhost:5000/users/${user.Username}/movies/${movieId}`, {
             method: "POST",
             headers: {"Content-Type": "application/json", Authorization: `Bearer ${storedToken}`}
         }).then((res) => {
@@ -41,7 +41,7 @@ export const MovieView = ({ movies, user, token, storedToken, storedUser}) => {
             console.log(e);
         });
     }else {
-              fetch(`https://movieapi-lcrt.onrender.com/users/${user.Username}/movies/${movieId}`, {
+              fetch(`http://localhost:5000/users/${user.Username}/movies/${movieId}`, {
             method: "DELETE",
             headers: {"Content-Type": "application/json", Authorization: `Bearer ${storedToken}`}
         }).then(response => {

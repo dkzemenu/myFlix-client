@@ -21,6 +21,8 @@ export const NavigationBar = ({ user, onLoggedOut, movies, setMovies }) => {
             { user && (
                 <>
                     <Nav.Link as={Link} to='/'>Home</Nav.Link>
+                    <Nav.Link as={Link} to='/upload'>Upload</Nav.Link>
+
                     <Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
                     <Nav.Link as={Link} to='/users'>My Profile</Nav.Link>
                     <SearchBar        

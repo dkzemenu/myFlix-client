@@ -19,7 +19,7 @@ export const SignupView = ({ token }) => {
             Birthday: birthday
         };
 
-        fetch("https://movieapi-lcrt.onrender.com/users", {
+        fetch("http://localhost:5000/users", {
             method: "POST",
             body: JSON.stringify(data),
             headers: {"Content-Type": "application/json", Authorization: `Bearer${token}`}

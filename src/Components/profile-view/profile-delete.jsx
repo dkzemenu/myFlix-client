@@ -11,7 +11,7 @@ export const ProfileDelete = ({ user, token, storedToken }) => {
 
         console.log(storedToken);
 
-        fetch(`https://movieapi-lcrt.onrender.com/users/${user.Username}`, {
+        fetch(`http://localhost:5000/users/${user.Username}`, {
             method: "DELETE",
             headers: {"Content-Type": "application/json", Authorization: `Bearer ${storedToken}`},
             body: JSON.stringify({password: confirmPassword})

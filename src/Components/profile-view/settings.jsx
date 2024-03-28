@@ -19,7 +19,7 @@ export const ProfileSettings =({storedUser, token}) => {
             Birthday: birthday
         };
 
-        fetch(`https://movieapi-lcrt.onrender.com/users/${storedUser.Username}`, {
+        fetch(`http://localhost:5000/users/${storedUser.Username}`, {
             method: "PUT",
             body: JSON.stringify(data),
             headers: {"Content-Type": "application/json", Authorization: `Bearer ${token}`}
