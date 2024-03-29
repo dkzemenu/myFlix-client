@@ -6,6 +6,13 @@ import { Link } from 'react-router-dom';
 // import { FavoriteButton } from './favorite-button';
 
 export const MovieCard = ({ movieData, favoriteMovie, user, storedToken, favoriteMovieList, setFavoriteMovieList }) => {
+    const handleDelete = () => {
+        fetch(`http://localhost:5000/movies/${movieData._id}`, {
+            method: 'DELETE',
+            headers: { Authorization: `Bearer ${storedToken}` },
+        })
+        .then((response) => response.json())
+    }
     console.log(movieData)
     if (!movieData) {
         alert ('There is no movie data'),
@@ -21,6 +28,8 @@ export const MovieCard = ({ movieData, favoriteMovie, user, storedToken, favorit
                 <Link to={`/movies/${encodeURIComponent(movieData._id)}`}>
                     <Button variant='link' > Open </Button>
                 </Link>
+                <Button variant='danger' onClick={handleDelete} > Delete </Button>
+
             </Card.Body>
         </Card>
     )
