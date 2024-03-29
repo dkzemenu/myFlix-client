@@ -40785,7 +40785,7 @@ const NavigationBar = ({ user, onLoggedOut, movies, setMovies })=>{
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _containerDefault.default), {
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navbarDefault.default).Brand, {
-                    href: "#home",
+                    href: "/",
                     children: "MyFlix"
                 }, void 0, false, {
                     fileName: "src/Components/navigation-bar/navigation-bar.jsx",
